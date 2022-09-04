@@ -17,4 +17,15 @@ public class BookSaleTest {
 
         assertThat(result).isEqualTo(27000L);
     }
+
+    @Test
+    public void getPrice2() {
+        Book book = new Book("자바의 정석", "남궁성", 30000L);
+        DiscountPolicy discountPolicy = new DiscountPolicy(DiscountType.AMOUNT, 2000L);
+        BookSale bookSale = new BookSale(book, discountPolicy);
+
+        Long result = bookSale.getPrice();
+
+        assertThat(result).isEqualTo(28000L);
+    }
 }

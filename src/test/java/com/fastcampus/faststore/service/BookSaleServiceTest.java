@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.fastcampus.faststore.type.DiscountType.PERCENT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -47,7 +48,7 @@ public class BookSaleServiceTest {
     @Transactional
     public void getOrThrow() {
         Book book = new Book("자바의 정석", "남궁성", 30000L);
-        DiscountPolicy discountPolicy = new DiscountPolicy(DiscountType.PERCENT, 10L);
+        DiscountPolicy discountPolicy = new DiscountPolicy(PERCENT, 10L);
         bookRepository.save(book);
         discountPolicyRepository.save(discountPolicy);
         bookSaleRepository.save(new BookSale(book, discountPolicy));
@@ -66,6 +67,9 @@ public class BookSaleServiceTest {
     @Test
     @Transactional
     public void registerBookSale() {
+        bookSaleService.registerBookSale("자바의 정석", PERCENT, 10L);
+
+//        assertThat(bookSaleRepository.).isNotNull();
     }
 
 }

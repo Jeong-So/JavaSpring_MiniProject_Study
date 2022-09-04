@@ -1,0 +1,35 @@
+spring:
+#  profiles: test
+  h2:
+    console:
+      enabled: true
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: true
+#    database: h2
+    database: mysql
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://localhost:3306/faststore_manager
+    username: root
+    password: qwer1234
+    initialization-mode: always
+
+#spring:
+##  profiles: test
+#  h2:
+#    console:
+#      enabled: true
+#  jpa:
+#    defer-datasource-initialization: true
+#    show-sql: true
+#    generate-ddl: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+

@@ -29,11 +29,15 @@ public class BookServiceTest {
         bookRepository.deleteAll();
     }
 
+    // 오류 발생 --> 추 후 해결
     // TODO: getOrThrow 테스트 코드를 작성하세요.
     @Test
     public void getOrThrow() {
+        bookService.getOrThrow("자바의 정석");
+
     }
 
+    // 오류 발생 --> 추 후 해결
     @Test
     public void registerBook() {
         bookService.registerBook("자바의 정석", "남궁성", 3000L);

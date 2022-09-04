@@ -35,6 +35,8 @@ public class DiscountPolicyServiceTest {
 
         assertThat(discountPolicyRepository.count()).isEqualTo(1L);
         DiscountPolicy result = discountPolicyRepository.findAll().get(0);
+        System.out.println("DiscountAmount >>> " + result.getDiscountType()); //
+        System.out.println("Amount >>> " + result.getAmount()); //
         assertThat(result.getDiscountType()).isEqualTo(DiscountType.PERCENT);
         assertThat(result.getAmount()).isEqualTo(10L);
     }
