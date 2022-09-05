@@ -3,6 +3,7 @@ package com.fastcampus.faststore.service;
 import com.fastcampus.faststore.entity.Book;
 import com.fastcampus.faststore.entity.BookSale;
 import com.fastcampus.faststore.entity.DiscountPolicy;
+import com.fastcampus.faststore.repository.BookRepository;
 import com.fastcampus.faststore.repository.BookSaleRepository;
 import com.fastcampus.faststore.type.DiscountType;
 import lombok.RequiredArgsConstructor;

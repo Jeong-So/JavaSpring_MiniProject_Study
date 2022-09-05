@@ -5,6 +5,7 @@ import com.fastcampus.faststore.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -28,16 +29,33 @@ public class BookService {
         book.setAuthor(author);
         book.setPrice(price);
 
-        bookRepository.save(book);
-
-        System.out.println(">>> "+ bookRepository.findAll());
-        System.out.println(">>> "+ bookRepository.findByTitle(title).get());
+        System.out.println(bookRepository.findByTitle(title));
 
         if(bookRepository.findByTitle(title) == null){
+//            Book book = new Book();
             bookRepository.save(book);
+            System.out.println(">>> "+ bookRepository.findAll());
+            System.out.println(">>> "+ bookRepository.findByTitle(title));
+
         }else{
-            throw new RuntimeException("오류가 발생하였습니다.");
+            throw new RuntimeException("이미 존재하는 책입니다.");
         }
+
+
+//        Book book = memberRepository.findById(memberId)
+//                .orElseThrow(RuntimeException::new);
+//
+//        bookRepository.findByTitle(title)
+//                .ifPresent(book1 -> {
+//                    throw new RuntimeException("이미 존재하는 책입니다.");
+//                });
+//
+//        Book book = new Book();
+//        book.setTitle(title);
+//        book.setAuthor(author);
+//        book.setPrice(price);
+//
+//        bookRepository.save(book);
 
     }
 }

@@ -7,11 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest
+@Transactional
 public class BookServiceTest {
 
     @Autowired
@@ -29,19 +31,26 @@ public class BookServiceTest {
         bookRepository.deleteAll();
     }
 
-    // 오류 발생 --> 추 후 해결
     // TODO: getOrThrow 테스트 코드를 작성하세요.
     @Test
     public void getOrThrow() {
-        bookService.getOrThrow("자바의 정석");
+        try{
+            Book book = bookService.getOrThrow("자바 정석");
 
+            System.out.println("book >>>" + book);
+        }catch(RuntimeException e) {
+            System.out.println(">>> " + e.getMessage());
+        }
     }
 
     // 오류 발생 --> 추 후 해결
     @Test
     public void registerBook() {
         bookService.registerBook("자바의 정석", "남궁성", 3000L);
-
         assertThat(bookRepository.findByTitle("자바의 정석")).isNotNull();
+
+        bookService.registerBook("수학의 정석", "홍성대", 3000L);
+        assertThat(bookRepository.findByTitle("수학의 정석")).isNotNull();
+
     }
 }

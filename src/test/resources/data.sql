@@ -9,3 +9,8 @@ insert into book(`id`,`created_at`,`created_by`,`updated_at`,`updated_by`, `titl
 insert into book(`id`,`created_at`,`created_by`,`updated_at`,`updated_by`, `title`,`author`,`price`) values(2, now(),'dennis', now(), 'jeong', '혼자 공부하는 파이썬', '윤인성', 26000);
 
 insert into book(`id`,`created_at`,`created_by`,`updated_at`,`updated_by`, `title`,`author`,`price`) values(3, now(),'sophia', now(), 'sophia', 'C 프로그래밍', '윤성우', 35000);
+
+insert into book(`id`,`created_at`,`created_by`,`updated_at`,`updated_by`, `title`,`author`,`price`) values(4, now(),'maria', now(), 'david', '자바의 정석', '남궁석', 30000);
+
+
+set autocommit = 1;

@@ -67,9 +67,15 @@ public class BookSaleServiceTest {
     @Test
     @Transactional
     public void registerBookSale() {
+
         bookSaleService.registerBookSale("자바의 정석", PERCENT, 10L);
 
-//        assertThat(bookSaleRepository.).isNotNull();
+        System.out.println("bookRepository >>> " + bookRepository.findAll());
+        System.out.println("bookSaleRepository >>> " + bookSaleRepository.findAll().get(0));
+
+        assertThat(bookSaleRepository.findAll().get(0)).isNotNull();
+        assertThat(bookSaleRepository.findAll().get(0).getBook().getTitle()).isEqualTo("자바의 정석");
+
     }
 
 }
