@@ -47,7 +47,7 @@ public class BookSaleServiceTest {
     @Test
     @Transactional
     public void getOrThrow() {
-        Book book = new Book("자바의 정석", "남궁성", 30000L);
+        Book book = new Book("자바의 정석", "남성", 30000L);
         DiscountPolicy discountPolicy = new DiscountPolicy(PERCENT, 10L);
         bookRepository.save(book);
         discountPolicyRepository.save(discountPolicy);
@@ -67,14 +67,19 @@ public class BookSaleServiceTest {
     @Test
     @Transactional
     public void registerBookSale() {
+        try {
+            bookSaleService.registerBookSale("자바 정석", PERCENT, 10L);
 
-        bookSaleService.registerBookSale("자바의 정석", PERCENT, 10L);
+            System.out.println("bookRepository >>> " + bookRepository.findAll());
+            System.out.println("bookSaleRepository >>> " + bookSaleRepository.findAll().get(0));
 
-        System.out.println("bookRepository >>> " + bookRepository.findAll());
-        System.out.println("bookSaleRepository >>> " + bookSaleRepository.findAll().get(0));
+            assertThat(bookSaleRepository.findAll().get(0)).isNotNull();
+            assertThat(bookSaleRepository.findAll().get(0).getBook().getTitle()).isEqualTo("자바의 정석");
+        } catch(RuntimeException e) {
+            System.out.println(">>> " + e.getMessage());
+        }
 
-        assertThat(bookSaleRepository.findAll().get(0)).isNotNull();
-        assertThat(bookSaleRepository.findAll().get(0).getBook().getTitle()).isEqualTo("자바의 정석");
+
 
     }
 
